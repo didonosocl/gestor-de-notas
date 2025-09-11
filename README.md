@@ -30,7 +30,8 @@ El proyecto utiliza los siguientes módulos de npm para gestionar las funcionali
 - **nodemon**: Herramienta que reinicia automáticamente el servidor de desarrollo cuando se realizan cambios en los archivos del proyecto, facilitando el proceso de desarrollo.
 - **npm-check-updates**: Herramienta que permite actualizar las dependencias del `package.json` a la última versión disponible de forma fácil, ayudando a mantener las dependencias del proyecto actualizadas.
 - **morgan**: Middleware para el registro de logs HTTP. Se utiliza para generar información sobre las solicitudes que se hacen a la aplicación, incluyendo detalles como el método HTTP, la ruta solicitada, el código de estado y el tiempo de respuesta. Este módulo es útil principalmente en entornos de desarrollo para depurar y monitorear el tráfico de la aplicación.
-- **geoip-lite**: Biblioteca para obtener información geográfica a partir de direcciones IP. Permite determinar la ubicación aproximada de los usuarios que acceden a la aplicación, incluyendo país, región, ciudad y coordenadas geográficas, lo que puede utilizarse para personalizar la experiencia de usuario o para análisis de tráfico.
+ - **geoip-lite**: Biblioteca para obtener información geográfica a partir de direcciones IP. Permite determinar la ubicación aproximada de los usuarios que acceden a la aplicación, incluyendo país, región, ciudad y coordenadas geográficas, lo que puede utilizarse para personalizar la experiencia de usuario o para análisis de tráfico.
+ - **axios**: Cliente HTTP basado en promesas para Node.js y el navegador. Se utiliza para realizar solicitudes HTTP externas, por ejemplo, para obtener información adicional sobre el proveedor de servicios de Internet (ISP) de una dirección IP mediante servicios como ipinfo.io.
 
 ## Características principales
 
