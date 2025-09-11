@@ -56,9 +56,24 @@ Antes de ejecutar el proyecto, es necesario configurar las variables de entorno.
 2. Define las siguientes variables en el archivo `.env`:
 
    ```env
-   MULTIGESTOR_MONGODB_HOST=127.0.0.1
-   MULTIGESTOR_MONGODB_PORT=27017
-   MULTIGESTOR_MONGODB_DATABASE=gestor-de-productos
+    # Configuración de la base de datos MongoDB
+    MULTIGESTOR_MONGODB_HOST=127.0.0.1
+    MULTIGESTOR_MONGODB_PORT=27017
+    MULTIGESTOR_MONGODB_DATABASE=gestor-de-productos
+
+    # Configuración de seguridad
+    # Nota: En producción, usar una cadena segura y aleatoria para SESSION_SECRET
+    SESSION_SECRET=XH4Wfg8BZpA9s2tLqR7Vn3Kd1xJm5TyE
+
+    # Configuración de la aplicación
+    PORT=4100
+    NODE_ENV=development # Cambiar a 'production' en entorno de producción
+
+    # Tiempo de expiración de sesiones (en milisegundos - 24 horas)
+    SESSION_MAX_AGE=86400000
+
+    # Configuración para logs
+    LOG_LEVEL=info
 
 ## 🔒 Sistema de Auditoría y Seguridad
 
