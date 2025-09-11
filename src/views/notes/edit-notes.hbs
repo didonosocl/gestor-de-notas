@@ -1,25 +1,124 @@
 
 
-<div class="col-md-4 mx-auto">
-    <div class="card">
-        <div class="card-header">
-            <h1>editar nota</h1>
+{{!-- 
+  Vista para editar notas existentes
+  Interfaz responsiva con diseño moderno y profesional
+  Incluye validación visual de formulario y retroalimentación al usuario
+--}}
+
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+      {{!-- Tarjeta principal con sombra y bordes suaves --}}
+      <div class="card shadow-lg border-0 rounded-lg">
+        {{!-- Encabezado con gradiente --}}
+        <div class="card-header bg-gradient-primary text-white text-center py-3" style="background: linear-gradient(to right, #4e73df, #6f42c1);">
+          <h3 class="mb-0 font-weight-bold">
+            <i class="fas fa-edit mr-2"></i> Editar Nota
+          </h3>
         </div>
-        <div class="card-body">
-            <form action="/notas/editar/{{note._id}}?_method=PUT" method="POST">
+        
+        <div class="card-body p-4">
+          {{!-- Formulario con animación sutil en los campos --}}
+          <form action="/notas/editar/{{note._id}}?_method=PUT" method="POST" class="needs-validation" novalidate>
             <input type="hidden" name="_method" value="PUT">
-                <div class="form-group">
-                    <input type="text" name="title" class="form-control" value="{{note.title}}">
-                </div>
-                <div class="form-group">
-                    <textarea type="text" name="description" class="form-control">{{note.description}}</textarea>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">
-                        Guardar
-                    </button>
-                </div>
-            </form>
+            
+            {{!-- Campo de título con validación --}}
+            <div class="form-group mb-4">
+              <label for="title" class="form-label text-muted small text-uppercase fw-bold">Título</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light">
+                  <i class="fas fa-heading text-primary"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="title"
+                  name="title" 
+                  class="form-control form-control-lg shadow-sm" 
+                  value="{{note.title}}"
+                  placeholder="Ingrese un título descriptivo" 
+                  required
+                  autofocus
+                >
+              </div>
+              <div class="invalid-feedback">
+                El título es requerido
+              </div>
+            </div>
+            
+            {{!-- Campo de descripción con contador de caracteres --}}
+            <div class="form-group mb-4">
+              <label for="description" class="form-label text-muted small text-uppercase fw-bold">Descripción</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light">
+                  <i class="fas fa-align-left text-primary"></i>
+                </span>
+                <textarea 
+                  id="description"
+                  name="description" 
+                  class="form-control shadow-sm" 
+                  placeholder="Agregue todos los detalles necesarios"
+                  style="min-height: 120px;" 
+                  required
+                >{{note.description}}</textarea>
+              </div>
+              <div class="invalid-feedback">
+                La descripción es requerida
+              </div>
+              <div class="text-end text-muted small mt-1">
+                <span id="char-count">0</span> caracteres
+              </div>
+            </div>
+            
+            {{!-- Botones de acción --}}
+            <div class="d-grid gap-2 mt-4">
+              <button class="btn btn-primary btn-lg shadow-sm" type="submit">
+                <i class="fas fa-save me-2"></i> Guardar Cambios
+              </button>
+              <a href="/notas" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Cancelar
+              </a>
+            </div>
+          </form>
         </div>
+        
+        <div class="card-footer bg-light text-center py-3">
+          <small class="text-muted">
+            <i class="far fa-clock me-1"></i> Última edición: {{#if note.updatedAt}}{{note.updatedAt}}{{else}}Ahora{{/if}}
+          </small>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
+{{!-- Script para validación y contador de caracteres --}}
+<script>
+  // Validación del formulario
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.needs-validation');
+    const descriptionField = document.getElementById('description');
+    const charCount = document.getElementById('char-count');
+    
+    // Contador de caracteres
+    function updateCharCount() {
+      const count = descriptionField.value.length;
+      charCount.textContent = count;
+    }
+    
+    // Actualizar contador al cargar
+    updateCharCount();
+    
+    // Actualizar contador al escribir
+    descriptionField.addEventListener('input', updateCharCount);
+    
+    // Validación al enviar
+    form.addEventListener('submit', function(event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+</script>

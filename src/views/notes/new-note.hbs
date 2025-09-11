@@ -1,31 +1,173 @@
-<div class="col-md-6 col-lg-4 mx-auto my-4">
-    <!-- Card con sombra y borde suave -->
-    <div class="card shadow-lg border-light rounded">
-        <div class="card-header text-center bg-primary text-white">
-            <h3 class="card-title mb-0">Nueva Nota</h3>
-        </div>
-        <div class="card-body">
-            <!-- Formulario de Nueva Nota -->
-            <form action="/notas/nota-nueva" method="POST" aria-labelledby="note-form">
-                <!-- Campo para el Título -->
-                <div class="mb-3">
-                    <label for="title" class="form-label">Título</label>
-                    <input type="text" id="title" name="title" class="form-control" placeholder="Ingrese el título de la nota" autofocus required>
-                </div>
+{{!-- 
+  Vista para crear nuevas notas
+  Diseño responsivo con elementos modernos y validación mejorada
+--}}
 
-                <!-- Campo para la Descripción -->
-                <div class="mb-3">
-                    <label for="description" class="form-label">Descripción</label>
-                    <textarea id="description" name="description" class="form-control" rows="5" placeholder="Describa la nota" required></textarea>
-                </div>
-
-                <!-- Botón para Guardar -->
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Guardar
-                    </button>
-                </div>
-            </form>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      {{!-- Tarjeta principal con efecto de elevación --}}
+      <div class="card shadow-lg border-0 rounded-lg animate__animated animate__fadeIn">
+        {{!-- Encabezado con gradiente --}}
+        <div class="card-header text-white text-center py-3" style="background: linear-gradient(to right, #4e73df, #224abe);">
+          <h3 class="mb-0 font-weight-bold">
+            <i class="fas fa-plus-circle me-2"></i> Crear Nueva Nota
+          </h3>
         </div>
+        
+        <div class="card-body p-4">
+          {{!-- Formulario con validación y estilo mejorado --}}
+          <form action="/notas/nota-nueva" method="POST" id="new-note-form" class="needs-validation" novalidate>
+            {{!-- Campo de título con ícono y validación --}}
+            <div class="form-group mb-4">
+              <label for="title" class="form-label text-muted small text-uppercase fw-bold">Título de la Nota</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text bg-light">
+                  <i class="fas fa-heading text-primary"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="title"
+                  name="title" 
+                  class="form-control form-control-lg" 
+                  placeholder="Ej: Productos de limpieza" 
+                  minlength="3"
+                  maxlength="100"
+                  autofocus
+                  required
+                >
+                <div class="invalid-feedback">
+                  Por favor ingrese un título válido (mínimo 3 caracteres)
+                </div>
+              </div>
+              <div class="form-text small mt-1">
+                <i class="fas fa-info-circle me-1"></i> El título debe ser descriptivo y conciso
+              </div>
+            </div>
+            
+            {{!-- Campo de descripción con contador de caracteres --}}
+            <div class="form-group mb-4">
+              <label for="description" class="form-label text-muted small text-uppercase fw-bold">Descripción</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text bg-light">
+                  <i class="fas fa-align-left text-primary"></i>
+                </span>
+                <textarea 
+                  id="description"
+                  name="description" 
+                  class="form-control" 
+                  rows="6"
+                  placeholder="Detalle los productos o información que desea recordar..." 
+                  minlength="5"
+                  maxlength="500"
+                  required
+                ></textarea>
+                <div class="invalid-feedback">
+                  Por favor ingrese una descripción válida (mínimo 5 caracteres)
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-1">
+                <div class="form-text small">
+                  <i class="fas fa-info-circle me-1"></i> Sea específico en su descripción
+                </div>
+                <div class="text-end text-muted small">
+                  <span id="char-count">0</span>/500 caracteres
+                </div>
+              </div>
+            </div>
+            
+            {{!-- Categorías (para futuras implementaciones) --}}
+            <div class="form-group mb-4">
+              <label class="form-label text-muted small text-uppercase fw-bold">Categoría</label>
+              <div class="d-flex gap-2 flex-wrap">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="category" id="cat1" value="personal" checked>
+                  <label class="form-check-label" for="cat1">Personal</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="category" id="cat2" value="trabajo">
+                  <label class="form-check-label" for="cat2">Trabajo</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="category" id="cat3" value="compras">
+                  <label class="form-check-label" for="cat3">Compras</label>
+                </div>
+              </div>
+            </div>
+            
+            {{!-- Botones de acción --}}
+            <div class="d-grid gap-2 mt-4">
+              <button class="btn btn-primary btn-lg shadow-sm" type="submit">
+                <i class="fas fa-save me-2"></i> Crear Nota
+              </button>
+              <a href="/notas" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Cancelar
+              </a>
+            </div>
+          </form>
+        </div>
+        
+        <div class="card-footer bg-light py-3">
+          <div class="text-center text-muted small">
+            <i class="fas fa-lightbulb me-1"></i> Consejo: Sea descriptivo para encontrar fácilmente sus notas
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
+{{!-- Scripts para validación y contador de caracteres --}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Validación del formulario
+    const form = document.getElementById('new-note-form');
+    const description = document.getElementById('description');
+    const charCount = document.getElementById('char-count');
+    
+    // Contador de caracteres
+    description.addEventListener('input', function() {
+      const currentLength = this.value.length;
+      charCount.textContent = currentLength;
+      
+      // Cambiar color si se acerca al límite
+      if (currentLength > 450) {
+        charCount.classList.add('text-danger');
+      } else {
+        charCount.classList.remove('text-danger');
+      }
+    });
+    
+    // Validación al enviar
+    form.addEventListener('submit', function(event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
+      form.classList.add('was-validated');
+    });
+  });
+</script>
+
+{{!-- Estilos personalizados --}}
+<style>
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+  }
+  
+  .btn-primary {
+    background-color: #4e73df;
+    border-color: #4e73df;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+  }
+</style>

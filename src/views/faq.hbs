@@ -1,113 +1,297 @@
-<h1 class="text-center text-primary mb-4">Preguntas Frecuentes (F.A.Q)</h1>
-<p class="text-center lead text-muted mb-4">Aquí encontrarás las respuestas a las preguntas más comunes sobre el uso de la plataforma.</p>
+{{!-- 
+  Vista de Preguntas Frecuentes (FAQ)
+  Diseño moderno con tarjetas interactivas y acordeones para mejorar la experiencia del usuario
+--}}
 
-<div class="container">
-    <!-- F.A.Q Cards -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Card 1: ¿Cómo registro una cuenta? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-user-plus fa-lg me-3"></i>¿Cómo registro una cuenta?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">Para registrarte, haz clic en la opción "Registro" en la barra de navegación y completa el formulario con tu nombre, correo electrónico y una contraseña segura.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 2: ¿Cómo agrego productos a mis notas? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-success text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-list-alt fa-lg me-3"></i>¿Cómo agrego productos a mis notas?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">Una vez hayas iniciado sesión, podrás acceder a la sección "Productos" donde encontrarás una lista categorizada de artículos que puedes agregar a tus notas. Solo debes seleccionar los productos que deseas añadir.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 3: ¿Cómo visualizo mis notas? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-sticky-note fa-lg me-3"></i>¿Cómo visualizo mis notas?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">En la sección "Mis Notas" puedes ver todas tus notas creadas, editarlas, y hacer un seguimiento de los productos que has agregado. Si deseas eliminar alguna, también tendrás esa opción.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 4: ¿Es posible modificar mis productos en las notas? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-info text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-edit fa-lg me-3"></i>¿Es posible modificar mis productos en las notas?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">Sí, puedes editar cualquier nota en cualquier momento. Solo debes acceder a la nota y modificar los productos que ya has agregado, o agregar nuevos productos según lo necesites.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 5: ¿Puedo eliminar una nota? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-danger text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-trash-alt fa-lg me-3"></i>¿Puedo eliminar una nota?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">Sí, si ya no necesitas una nota, puedes eliminarla fácilmente desde la vista de "Mis Notas". Simplemente haz clic en la opción de eliminar y la nota será borrada de tu perfil.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 6: ¿Cómo puedo cambiar mi contraseña? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-secondary text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-key fa-lg me-3"></i>¿Cómo puedo cambiar mi contraseña?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">Para cambiar tu contraseña, ve a la sección de "Ajustes" dentro de tu perfil y selecciona la opción "Cambiar Contraseña". Asegúrate de elegir una contraseña fuerte y segura.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 7: ¿Cómo contacto al soporte? -->
-        <div class="col">
-            <div class="card shadow-lg faq-card h-100 d-flex flex-column">
-                <div class="card-header bg-dark text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-headset fa-lg me-3"></i>¿Cómo contacto al soporte?
-                    </h5>
-                </div>
-                <div class="card-body flex-fill">
-                    <p class="card-text">Si necesitas ayuda, puedes contactarnos a través de la sección "Contacto" en la barra de navegación. Completa el formulario con tu consulta y nuestro equipo de soporte se pondrá en contacto contigo lo antes posible.</p>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid py-5">
+  {{!-- Cabecera con estilo moderno --}}
+  <div class="row mb-5">
+    <div class="col-12 text-center">
+      <div class="position-relative d-inline-block mb-4">
+        <h1 class="display-4 fw-bold text-primary position-relative z-2">Preguntas Frecuentes</h1>
+        <br>
+        <div class="position-absolute bg-primary opacity-10 rounded-pill" style="width: 100%; height: 20px; bottom: 0; left: 0; z-index: 1;"></div>
+      </div>
+      <p class="lead text-muted col-lg-8 mx-auto">
+        Aquí encontrarás las respuestas a las preguntas más comunes sobre el uso de nuestra plataforma. 
+        Si no encuentras lo que buscas, no dudes en contactarnos.
+      </p>
     </div>
+  </div>
 
-    <!-- Llamado a la acción para contacto -->
-    <div class="row mt-4">
-        <div class="col-12 text-center">
-            <p class="lead">¿No encontraste lo que buscabas? ¡No dudes en contactarnos!</p>
-            <a href="/contacto" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane me-2"></i>Contacto</a>
-        </div>
+  {{!-- Buscador de preguntas frecuentes --}}
+  <div class="row mb-5">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <div class="input-group shadow-sm">
+        <span class="input-group-text bg-white border-end-0">
+          <i class="fas fa-search text-primary"></i>
+        </span>
+        <input type="text" class="form-control border-start-0 ps-0" id="faqSearch" 
+          placeholder="Buscar en preguntas frecuentes..." aria-label="Búsqueda">
+      </div>
     </div>
+  </div>
+
+  {{!-- Categorías de preguntas (pestañas) --}}
+  <div class="row mb-4">
+    <div class="col-12">
+      <ul class="nav nav-pills nav-fill mb-4 justify-content-center" id="faqTabs" role="tablist">
+        <li class="nav-item mx-1" role="presentation">
+          <button class="nav-link active px-4 rounded-pill" id="general-tab" data-bs-toggle="pill" 
+            data-bs-target="#general" type="button" role="tab" aria-selected="true">
+            <i class="fas fa-info-circle me-2"></i>General
+          </button>
+        </li>
+        <li class="nav-item mx-1" role="presentation">
+          <button class="nav-link px-4 rounded-pill" id="account-tab" data-bs-toggle="pill" 
+            data-bs-target="#account" type="button" role="tab" aria-selected="false">
+            <i class="fas fa-user-circle me-2"></i>Cuenta
+          </button>
+        </li>
+        <li class="nav-item mx-1" role="presentation">
+          <button class="nav-link px-4 rounded-pill" id="notes-tab" data-bs-toggle="pill" 
+            data-bs-target="#notes" type="button" role="tab" aria-selected="false">
+            <i class="fas fa-sticky-note me-2"></i>Notas
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {{!-- Contenido de pestañas --}}
+  <div class="tab-content" id="faqTabContent">
+    {{!-- Pestaña General --}}
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        {{!-- Card 1: ¿Cómo registro una cuenta? --}}
+        <div class="col faq-item" data-keywords="registro cuenta crear usuario email correo">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-primary text-white py-3" 
+              style="background: linear-gradient(45deg, #4e73df, #224abe);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-user-plus fa-lg me-3"></i>¿Cómo registro una cuenta?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Para registrarte, sigue estos sencillos pasos:</p>
+              <ol>
+                <li>Haz clic en la opción <strong>"Registro"</strong> en la barra de navegación</li>
+                <li>Completa el formulario con tu nombre, correo electrónico y contraseña</li>
+                <li>Asegúrate de que tu contraseña sea segura (mínimo 6 caracteres)</li>
+                <li>Haz clic en "Registrarse" y ¡listo!</li>
+              </ol>
+              <div class="text-center mt-3">
+                <a href="/usuarios/registro" class="btn btn-sm btn-outline-primary">
+                  <i class="fas fa-external-link-alt me-1"></i> Ir a Registro
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{!-- Card 2: ¿Cómo agrego productos a mis notas? --}}
+        <div class="col faq-item" data-keywords="agregar añadir productos notas items artículos lista">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-success text-white py-3"
+              style="background: linear-gradient(45deg, #1cc88a, #169a6a);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-list-alt fa-lg me-3"></i>¿Cómo agrego productos a mis notas?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Para agregar productos a tus notas:</p>
+              <ol>
+                <li>Inicia sesión en tu cuenta</li>
+                <li>Navega a la sección <strong>"Notas"</strong> y selecciona una nota existente o crea una nueva</li>
+                <li>En el formulario de edición o creación, escribe el título y descripción con los productos deseados</li>
+                <li>Guarda los cambios para actualizar tu nota</li>
+              </ol>
+              <div class="alert alert-success mt-3 mb-0">
+                <i class="fas fa-lightbulb me-2"></i> <strong>Consejo:</strong> Organiza tus productos por categorías para encontrarlos más fácilmente
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {{!-- Pestaña Cuenta --}}
+    <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        {{!-- Cambio de contraseña --}}
+        <div class="col faq-item" data-keywords="contraseña cambiar modificar olvidar restablecer">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-secondary text-white py-3"
+              style="background: linear-gradient(45deg, #6c757d, #495057);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-key fa-lg me-3"></i>¿Cómo cambio mi contraseña?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Para cambiar tu contraseña, sigue estos pasos:</p>
+              <ol>
+                <li>Ve a la sección de <strong>"Ajustes"</strong> o <strong>"Perfil"</strong></li>
+                <li>Selecciona la opción "Cambiar Contraseña"</li>
+                <li>Ingresa tu contraseña actual</li>
+                <li>Crea una nueva contraseña segura (mínimo 6 caracteres)</li>
+                <li>Confirma la nueva contraseña y guarda los cambios</li>
+              </ol>
+              <div class="alert alert-warning mt-3 mb-0">
+                <i class="fas fa-shield-alt me-2"></i> <strong>Importante:</strong> Usa una combinación de letras, números y símbolos para mayor seguridad
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {{!-- Soporte y contacto --}}
+        <div class="col faq-item" data-keywords="soporte ayuda contacto problemas asistencia">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-dark text-white py-3"
+              style="background: linear-gradient(45deg, #5a5c69, #343a40);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-headset fa-lg me-3"></i>¿Cómo contacto al soporte?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Si necesitas ayuda, tienes varias opciones para contactarnos:</p>
+              <ul>
+                <li><strong>Formulario de contacto:</strong> Accede a la sección "Contacto" y completa el formulario</li>
+                <li><strong>Correo electrónico:</strong> Escríbenos directamente a <a href="mailto:soporte@gestorproductos.com">soporte@gestorproductos.com</a></li>
+                <li><strong>Redes sociales:</strong> Envíanos un mensaje a través de nuestros perfiles oficiales</li>
+              </ul>
+              <div class="text-center mt-3">
+                <a href="/contacto" class="btn btn-sm btn-outline-dark">
+                  <i class="fas fa-envelope me-1"></i> Contáctanos
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {{!-- Pestaña Notas --}}
+    <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        {{!-- Visualizar notas --}}
+        <div class="col faq-item" data-keywords="ver visualizar notas lista productos">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-warning text-dark py-3"
+              style="background: linear-gradient(45deg, #f6c23e, #dda20a);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-sticky-note fa-lg me-3"></i>¿Cómo visualizo mis notas?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Para ver todas tus notas:</p>
+              <ol>
+                <li>Inicia sesión con tus credenciales</li>
+                <li>Dirígete a la sección <strong>"Mis Notas"</strong> en el menú principal</li>
+                <li>Aquí encontrarás todas tus notas ordenadas por fecha de creación</li>
+                <li>Puedes usar la barra de búsqueda para filtrar por título o contenido</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        
+        {{!-- Modificar notas --}}
+        <div class="col faq-item" data-keywords="modificar editar actualizar notas productos cambios">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-info text-white py-3"
+              style="background: linear-gradient(45deg, #36b9cc, #258391);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-edit fa-lg me-3"></i>¿Puedo modificar mis notas?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Sí, puedes editar cualquier nota siguiendo estos pasos:</p>
+              <ol>
+                <li>Ve a la sección "Mis Notas"</li>
+                <li>Busca la nota que deseas modificar</li>
+                <li>Haz clic en el botón <i class="fas fa-edit"></i> (editar)</li>
+                <li>Modifica el título o descripción según necesites</li>
+                <li>Guarda los cambios haciendo clic en "Guardar"</li>
+              </ol>
+              <div class="alert alert-info mt-3 mb-0">
+                <i class="fas fa-info-circle me-2"></i> Todos los cambios se guardan automáticamente con la fecha de actualización
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {{!-- Eliminar notas --}}
+        <div class="col faq-item" data-keywords="eliminar borrar suprimir notas">
+          <div class="card shadow-sm border-0 h-100 faq-card">
+            <div class="card-header bg-gradient-danger text-white py-3"
+              style="background: linear-gradient(45deg, #e74a3b, #be2617);">
+              <h5 class="card-title d-flex align-items-center mb-0">
+                <i class="fas fa-trash-alt fa-lg me-3"></i>¿Puedo eliminar una nota?
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Sí, para eliminar una nota:</p>
+              <ol>
+                <li>Navega a la sección "Mis Notas"</li>
+                <li>Localiza la nota que quieres eliminar</li>
+                <li>Haz clic en el botón <strong>"Eliminar"</strong></li>
+                <li>Confirma la eliminación cuando se te solicite</li>
+              </ol>
+              <div class="alert alert-danger mt-3">
+                <i class="fas fa-exclamation-triangle me-2"></i> <strong>¡Atención!</strong> Esta acción es irreversible y no se podrá recuperar la nota eliminada
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {{!-- Llamado a la acción para contacto --}}
+  <div class="row mt-5">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <div class="card shadow-lg border-0 bg-primary text-white overflow-hidden">
+        <div class="card-body p-4 position-relative">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h4 class="mb-2">¿No encontraste la respuesta que buscabas?</h4>
+              <p class="mb-lg-0 opacity-75">Nuestro equipo de soporte está disponible para ayudarte con cualquier consulta</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+              <a href="/contacto" class="btn btn-light btn-lg shadow-sm">
+                <i class="fas fa-paper-plane me-2"></i>Contacto
+              </a>
+            </div>
+          </div>
+          <div class="position-absolute" style="right: -30px; bottom: -30px; opacity: 0.1;">
+            <i class="fas fa-envelope fa-10x"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+{{!-- Scripts para búsqueda de preguntas --}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar búsqueda
+    const searchInput = document.getElementById('faqSearch');
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      
+      faqItems.forEach(item => {
+        const keywords = item.dataset.keywords || '';
+        const question = item.querySelector('.card-title').textContent.toLowerCase();
+        const answer = item.querySelector('.card-body').textContent.toLowerCase();
+        
+        if (question.includes(searchTerm) || answer.includes(searchTerm) || keywords.includes(searchTerm)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

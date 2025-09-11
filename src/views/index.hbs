@@ -1,100 +1,393 @@
-<h1 class="text-center text-primary mb-4">
-    <i class="fas fa-home me-2"></i> Bienvenido al Gestor de Productos para el Hogar
-</h1>
+{{!-- 
+  Página principal/landing page del Gestor de Productos
+  Diseño moderno con elementos animados y llamadas a la acción claras
+--}}
 
-<div class="container">
-    <div class="row">
-        <!-- Descripción general -->
-        <div class="col-12">
-            <p class="lead text-muted">
-                Este es un sistema completo para gestionar tus compras y productos para el hogar. A continuación te detallamos las funcionalidades principales de la plataforma:
-            </p>
+<div class="container-fluid px-0">
+  {{!-- Hero Section con animación suave --}}
+  <div class="position-relative overflow-hidden py-5 bg-gradient-primary text-white mb-5" 
+       style="background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-7 mb-4 mb-lg-0 animate__animated animate__fadeInLeft">
+          <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-home me-2"></i> Gestor de Productos para el Hogar
+          </h1>
+          <p class="lead mb-4">
+            Simplifica la organización de tus compras del hogar, mantén un registro ordenado de tus 
+            productos y ahorra tiempo y dinero con nuestra plataforma intuitiva.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="/usuarios/registro" class="btn btn-light btn-lg px-4 shadow-sm">
+              <i class="fas fa-user-plus me-2"></i> Comenzar Ahora
+            </a>
+            <a href="#features" class="btn btn-outline-light btn-lg px-4">
+              <i class="fas fa-info-circle me-2"></i> Conocer Más
+            </a>
+          </div>
         </div>
+        <div class="col-lg-5 animate__animated animate__fadeInRight">
+          <div class="text-center p-4">
+            <img src="https://i.ibb.co/DHjkr6dv/Captura-de-pantalla-2025-02-19-024457.png" 
+                 alt="Gestor de Productos" class="img-fluid rounded shadow-lg" style="max-height: 300px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {{!-- Forma decorativa --}}
+    <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden" style="height: 70px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" 
+           style="height: 100%; width: 100%;">
+        <path fill="#ffffff" fill-opacity="1" 
+              d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,149.3C672,149,768,171,864,176C960,181,1056,171,1152,144C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+        </path>
+      </svg>
+    </div>
+  </div>
+  
+  {{!-- Características principales con iconos y animaciones --}}
+  <div class="container py-5" id="features">
+    <div class="row mb-5 text-center">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="fw-bold text-primary mb-3">Funcionalidades Principales</h2>
+        <p class="lead text-muted">
+          Nuestro gestor de productos ofrece todas las herramientas que necesitas para organizar eficientemente 
+          tus compras y productos para el hogar.
+        </p>
+      </div>
     </div>
 
-    <!-- Tarjetas de características principales -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Card 1: Registro e Ingreso de Usuarios -->
-        <div class="col">
-            <div class="card shadow-lg h-100 border-primary">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-user-plus fa-lg me-3"></i>Registro e Ingreso de Usuarios
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Los usuarios pueden crear una cuenta y acceder a su perfil personalizado para gestionar sus notas de compra.</p>
-                </div>
-            </div>
+      {{!-- Card 1: Registro e Ingreso de Usuarios --}}
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0 feature-card">
+          <div class="card-header bg-gradient-primary text-white py-3" 
+               style="background: linear-gradient(45deg, #4e73df, #224abe);">
+            <h5 class="card-title d-flex align-items-center mb-0">
+              <div class="feature-icon rounded-circle bg-white text-primary p-2 me-3">
+                <i class="fas fa-user-plus fa-lg"></i>
+              </div>
+              Registro e Ingreso de Usuarios
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Crea tu cuenta personal con un proceso sencillo y seguro. Accede a tu perfil personalizado para gestionar tus notas de compra desde cualquier dispositivo.</p>
+            <ul class="list-unstyled mt-3">
+              <li><i class="fas fa-check-circle text-success me-2"></i> Registro rápido</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Autenticación segura</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Perfil personalizado</li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-        <!-- Card 2: Notas Personalizadas -->
-        <div class="col">
-            <div class="card shadow-lg h-100 border-success">
-                <div class="card-header bg-success text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-sticky-note fa-lg me-3"></i>Notas Personalizadas
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Cada usuario puede crear y editar notas con productos seleccionados desde una lista categorizada de productos necesarios para el hogar (supermercado, limpieza, etc.).</p>
-                </div>
-            </div>
+      {{!-- Card 2: Notas Personalizadas --}}
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0 feature-card">
+          <div class="card-header bg-gradient-success text-white py-3"
+               style="background: linear-gradient(45deg, #1cc88a, #169a6a);">
+            <h5 class="card-title d-flex align-items-center mb-0">
+              <div class="feature-icon rounded-circle bg-white text-success p-2 me-3">
+                <i class="fas fa-sticky-note fa-lg"></i>
+              </div>
+              Notas Personalizadas
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Crea y edita notas personalizadas con los productos que necesitas para tu hogar. Organiza por categorías como supermercado, limpieza y más para mantener todo ordenado.</p>
+            <ul class="list-unstyled mt-3">
+              <li><i class="fas fa-check-circle text-success me-2"></i> Notas ilimitadas</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Organización por categorías</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Edición y actualización sencilla</li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-        <!-- Card 3: Selección de Productos -->
-        <div class="col">
-            <div class="card shadow-lg h-100 border-warning">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-list fa-lg me-3"></i>Selección de Productos
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Una lista de productos predefinidos permite seleccionar los artículos que el usuario desea agregar a sus notas.</p>
-                </div>
-            </div>
+      {{!-- Card 3: Selección de Productos --}}
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0 feature-card">
+          <div class="card-header bg-gradient-warning text-dark py-3"
+               style="background: linear-gradient(45deg, #f6c23e, #dda20a);">
+            <h5 class="card-title d-flex align-items-center mb-0">
+              <div class="feature-icon rounded-circle bg-white text-warning p-2 me-3">
+                <i class="fas fa-list fa-lg"></i>
+              </div>
+              Selección de Productos
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Accede a una lista completa de productos comunes para seleccionar rápidamente los artículos que necesitas, ahorrando tiempo en la creación de tus listas.</p>
+            <ul class="list-unstyled mt-3">
+              <li><i class="fas fa-check-circle text-success me-2"></i> Productos categorizados</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Selección rápida</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Productos personalizables</li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-        <!-- Card 4: Interfaz Sencilla y Amigable -->
-        <div class="col">
-            <div class="card shadow-lg h-100 border-info">
-                <div class="card-header bg-info text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-desktop fa-lg me-3"></i>Interfaz Sencilla y Amigable
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Fácil de usar, con una experiencia de usuario intuitiva para agregar, editar y revisar productos en las notas.</p>
-                </div>
-            </div>
+      {{!-- Card 4: Interfaz Sencilla y Amigable --}}
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0 feature-card">
+          <div class="card-header bg-gradient-info text-white py-3"
+               style="background: linear-gradient(45deg, #36b9cc, #258391);">
+            <h5 class="card-title d-flex align-items-center mb-0">
+              <div class="feature-icon rounded-circle bg-white text-info p-2 me-3">
+                <i class="fas fa-desktop fa-lg"></i>
+              </div>
+              Interfaz Intuitiva
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Disfruta de una experiencia de usuario intuitiva y moderna que facilita la creación, edición y gestión de tus productos en cualquier dispositivo.</p>
+            <ul class="list-unstyled mt-3">
+              <li><i class="fas fa-check-circle text-success me-2"></i> Diseño responsivo</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Navegación sencilla</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Accesible desde cualquier dispositivo</li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-        <!-- Card 5: Seguridad -->
-        <div class="col">
-            <div class="card shadow-lg h-100 border-danger">
-                <div class="card-header bg-danger text-white">
-                    <h5 class="card-title d-flex align-items-center">
-                        <i class="fas fa-shield-alt fa-lg me-3"></i>Seguridad
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Implementación de funcionalidades básicas de seguridad para proteger las cuentas de usuario, incluyendo el cifrado de contraseñas con bcryptjs y autenticación segura con passport.</p>
-                </div>
-            </div>
+      {{!-- Card 5: Seguridad --}}
+      <div class="col">
+        <div class="card shadow-sm h-100 border-0 feature-card">
+          <div class="card-header bg-gradient-danger text-white py-3"
+               style="background: linear-gradient(45deg, #e74a3b, #be2617);">
+            <h5 class="card-title d-flex align-items-center mb-0">
+              <div class="feature-icon rounded-circle bg-white text-danger p-2 me-3">
+                <i class="fas fa-shield-alt fa-lg"></i>
+              </div>
+              Seguridad Avanzada
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Protegemos tus datos con cifrado de contraseñas y autenticación segura. Tu información personal y tus notas están siempre protegidas.</p>
+            <ul class="list-unstyled mt-3">
+              <li><i class="fas fa-check-circle text-success me-2"></i> Cifrado con bcryptjs</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Autenticación con Passport.js</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i> Protección de datos personales</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
-
-    <!-- Llamado a la acción para registro e ingreso -->
-    <div class="row mt-4">
-        <div class="col-12 text-center">
-            <p class="lead">Comienza a usar la plataforma registrándote o iniciando sesión.</p>
-            <a href="/usuarios/registro" class="btn btn-primary btn-lg mb-3 mb-sm-0 me-2">
-                <i class="fas fa-user-plus me-2"></i> Registro
-            </a>
-            <a href="/usuarios/ingreso" class="btn btn-secondary btn-lg mb-3 mb-sm-0">
-                <i class="fas fa-sign-in-alt me-2"></i> Ingreso
-            </a>
+    
+    {{!-- Estadísticas --}}
+    <div class="row my-5 py-4">
+      <div class="col-12 col-md-10 mx-auto">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <div class="row g-0 text-center">
+              <div class="col-6 col-md-3 p-4 border-end">
+                <div class="display-4 fw-bold text-primary mb-1">100+</div>
+                <div class="text-muted">Productos</div>
+              </div>
+              <div class="col-6 col-md-3 p-4 border-end">
+                <div class="display-4 fw-bold text-success mb-1">500+</div>
+                <div class="text-muted">Usuarios</div>
+              </div>
+              <div class="col-6 col-md-3 p-4 border-end">
+                <div class="display-4 fw-bold text-warning mb-1">5k+</div>
+                <div class="text-muted">Notas creadas</div>
+              </div>
+              <div class="col-6 col-md-3 p-4">
+                <div class="display-4 fw-bold text-info mb-1">24/7</div>
+                <div class="text-muted">Soporte</div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    
+    {{!-- Testimonios/Comentarios de usuarios (placeholders) --}}
+    <div class="row my-5">
+      <div class="col-12 text-center mb-4">
+        <h2 class="fw-bold text-primary">Lo que dicen nuestros usuarios</h2>
+        <p class="text-muted">Descubre cómo nuestro gestor de productos ayuda a miles de usuarios a organizarse mejor</p>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card border-0 shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex mb-3">
+              <div class="text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="card-text">"Esta app ha cambiado por completo cómo organizo mis compras. Ya no olvido nada en el supermercado y he ahorrado mucho tiempo."</p>
+            <div class="d-flex align-items-center mt-3">
+              <div class="bg-primary rounded-circle text-white p-3 me-3">
+                <i class="fas fa-user"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold">María González</h6>
+                <small class="text-muted">Usuaria desde 2024</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card border-0 shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex mb-3">
+              <div class="text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+            <p class="card-text">"La interfaz es súper intuitiva y me encanta poder organizar mis productos por categorías. Lo recomiendo a todas las familias."</p>
+            <div class="d-flex align-items-center mt-3">
+              <div class="bg-success rounded-circle text-white p-3 me-3">
+                <i class="fas fa-user"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold">Carlos Rodríguez</h6>
+                <small class="text-muted">Usuario desde 2023</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 p-2">
+          <div class="card-body">
+            <div class="d-flex mb-3">
+              <div class="text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="card-text">"Lo uso todos los días para organizar las compras familiares. La facilidad de crear y editar notas es genial y el soporte es excelente."</p>
+            <div class="d-flex align-items-center mt-3">
+              <div class="bg-info rounded-circle text-white p-3 me-3">
+                <i class="fas fa-user"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold">Laura Martínez</h6>
+                <small class="text-muted">Usuaria desde 2024</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {{!-- Llamado a la acción final --}}
+    <div class="row mt-5">
+      <div class="col-lg-10 mx-auto">
+        <div class="card border-0 bg-gradient-primary text-white shadow-lg overflow-hidden"
+             style="background: linear-gradient(to right, #4e73df, #224abe);">
+          <div class="card-body p-5 position-relative">
+            <div class="row align-items-center">
+              <div class="col-lg-8 mb-4 mb-lg-0">
+                <h3 class="fw-bold mb-3">¿Listo para organizar tus productos?</h3>
+                <p class="mb-lg-0">Comienza hoy mismo a gestionar tus productos del hogar de manera eficiente y organizada.</p>
+              </div>
+              <div class="col-lg-4 text-lg-end">
+                <div class="d-grid gap-2">
+                  <a href="/usuarios/registro" class="btn btn-light btn-lg">
+                    <i class="fas fa-user-plus me-2"></i> Registrarse
+                  </a>
+                  <a href="/usuarios/ingreso" class="btn btn-outline-light">
+                    <i class="fas fa-sign-in-alt me-2"></i> Iniciar Sesión
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="position-absolute" style="right: -20px; bottom: -20px; opacity: 0.1;">
+              <i class="fas fa-clipboard-list fa-10x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {{!-- Footer --}}
+  <footer class="bg-light py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <span class="text-muted">© 2025 Gestor de Productos | Por Diego Donoso Vera</span>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="/faq" class="text-decoration-none text-muted me-3">
+            <i class="fas fa-question-circle me-1"></i> FAQ
+          </a>
+          <a href="#" class="text-decoration-none text-muted me-3">
+            <i class="fas fa-shield-alt me-1"></i> Privacidad
+          </a>
+          <a href="#" class="text-decoration-none text-muted">
+            <i class="fas fa-file-alt me-1"></i> Términos
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
+
+{{!-- Estilos personalizados --}}
+<style>
+  /* Efecto de tarjeta con elevación al pasar el cursor */
+  .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+  }
+  
+  /* Estilos para los íconos circulares */
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  
+  /* Animaciones para cargar la página */
+  .animate__animated {
+    animation-duration: 1s;
+  }
+  
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>

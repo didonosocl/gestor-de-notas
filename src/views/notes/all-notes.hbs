@@ -1,37 +1,189 @@
-<!-- Fila principal que contiene las tarjetas de las notas -->
-<div class="row">
-    {{#each notes}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> <!-- Columnas responsivas (12 columnas en móvil, 6 en pantallas pequeñas, 4 en pantallas medianas, 3 en pantallas grandes) -->
-            <!-- Tarjeta de Nota con Sombra -->
-            <div class="card shadow-lg border-light rounded" style="min-height: 250px;"> <!-- Se añadió min-height -->
-                <div class="card-body d-flex flex-column">
-                    <!-- Título de la Nota y Botón de Editar -->
-                    <h4 class="card-title d-flex justify-content-between align-items-center">
-                        {{title}}
-                        <a href="/notas/editar/{{_id}}" class="btn btn-outline-secondary btn-sm" title="Editar Nota">
-                            <i class="fas fa-edit"></i> <!-- Icono de editar -->
-                        </a>
-                    </h4>
-                    
-                    <!-- Descripción de la Nota -->
-                    <p class="card-text text-muted mb-3" style="flex-grow: 1;">{{description}}</p> <!-- Se añadió flex-grow para que la descripción ocupe el espacio restante y se ajuste -->
+{{!-- 
+  Vista principal de notas - Muestra todas las notas del usuario en un diseño de tarjetas
+  Diseño responsivo con animaciones sutiles y elementos modernos
+--}}
 
-                    <!-- Formulario para Borrar la Nota -->
-                    <form action="/notas/borrar/{{_id}}?_method=DELETE" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger w-100 btn-sm mb-2" title="Borrar Nota">
-                            <i class="fas fa-trash-alt"></i> Borrar <!-- Icono de eliminar -->
-                        </button>
-                    </form>
-                </div>
+<div class="container-fluid py-4">
+  {{!-- Cabecera con título y estadísticas --}}
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card bg-gradient-primary text-white shadow-lg border-0" style="background: linear-gradient(to right, #4e73df, #6f42c1);">
+        <div class="card-body py-3">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h2 class="mb-0 font-weight-bold">
+                <i class="fas fa-clipboard-list me-2"></i> Mis Notas
+              </h2>
+              <p class="mb-0 opacity-75">Gestiona tus notas y productos importantes</p>
             </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+              <div class="badge bg-light text-primary p-2">
+                <i class="fas fa-chart-bar me-1"></i> Total: {{notes.length}} notas
+              </div>
+            </div>
+          </div>
         </div>
-    {{/each}}
+      </div>
+    </div>
+  </div>
+  
+  {{!-- Filtro y buscador (preparado para futuras funcionalidades) --}}
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-body py-3">
+          <div class="row g-2 align-items-center">
+            <div class="col-md-6">
+              <a href="/notas/agregar" class="btn btn-primary shadow-sm">
+                <i class="fas fa-plus-circle me-2"></i> Nueva Nota
+              </a>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar notas..." id="searchNotes">
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Contenedor principal de notas --}}
+  {{#if notes.length}}
+    <div class="row g-4">
+      {{#each notes}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          {{!-- Tarjeta con efectos de hover --}}
+          <div class="card shadow border-0 rounded-lg h-100 note-card">
+            <div class="card-header bg-light py-3">
+              <h5 class="card-title d-flex justify-content-between align-items-center mb-0">
+                <span class="text-truncate pe-2">{{title}}</span>
+                <a href="/notas/editar/{{_id}}" class="btn btn-sm btn-outline-primary" title="Editar Nota">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </h5>
+            </div>
+            
+            <div class="card-body d-flex flex-column">
+              {{!-- Descripción con scroll si es muy larga --}}
+              <div class="description-container flex-grow-1 mb-3">
+                <p class="card-text">{{description}}</p>
+              </div>
+              
+              {{!-- Acciones de la tarjeta --}}
+              <div class="mt-auto">
+                {{!-- Formulario para borrar con confirmación --}}
+                <form action="/notas/borrar/{{_id}}?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta nota?');">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash-alt me-2"></i> Eliminar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    {{!-- Paginación para futuras implementaciones --}}
+    <div class="row mt-4">
+      <div class="col-12">
+        <nav aria-label="Paginación de notas">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Siguiente</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  {{else}}
+    {{!-- Mensaje cuando no hay notas --}}
+    <div class="row">
+      <div class="col-md-6 mx-auto text-center">
+        <div class="card shadow-lg border-0">
+          <div class="card-body py-5">
+            <i class="fas fa-clipboard-list fa-4x text-muted mb-3"></i>
+            <h3 class="mb-3">No hay notas disponibles</h3>
+            <p class="text-muted mb-4">Comienza creando tu primera nota para organizar tus productos.</p>
+            <a href="/notas/agregar" class="btn btn-primary btn-lg">
+              <i class="fas fa-plus-circle me-2"></i> Crear Primera Nota
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  {{!-- Botón flotante para agregar notas --}}
+  <div class="position-fixed bottom-0 end-0 p-4">
+    <a href="/notas/agregar" class="btn btn-primary btn-lg rounded-circle shadow-lg" title="Agregar Nueva Nota">
+      <i class="fas fa-plus"></i>
+    </a>
+  </div>
 </div>
 
-<!-- Botón general para agregar nueva nota fuera de las tarjetas -->
-<div class="d-flex justify-content-center mt-4">
-    <a href="/notas/agregar" class="btn btn-primary btn-lg shadow-lg" title="Agregar Nueva Nota">
-        <i class="fas fa-plus-circle"></i> Agregar Nota
-    </a>
-</div>
+{{!-- Estilos personalizados --}}
+<style>
+  .note-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+  }
+  
+  .note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+  }
+  
+  .description-container {
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  
+  /* Estilo para scrollbar en Chrome/Edge */
+  .description-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .description-container::-webkit-scrollbar-thumb {
+    background-color: #cbd3e1;
+    border-radius: 10px;
+  }
+</style>
+
+{{!-- Script para búsqueda de notas --}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchNotes');
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const noteCards = document.querySelectorAll('.note-card');
+      
+      noteCards.forEach(card => {
+        const title = card.querySelector('.card-title span').textContent.toLowerCase();
+        const description = card.querySelector('.card-text').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          card.closest('.col-12').style.display = '';
+        } else {
+          card.closest('.col-12').style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
