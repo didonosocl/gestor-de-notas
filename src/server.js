@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Configuración principal del servidor Express para la aplicación de Gestor de Productos.
+ * @version 1.0.0
+ */
+
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -7,59 +12,109 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 
-// Initilizations
+// Inicialización de Express
 const app = express();
-require('./config/passport'); // Importa la configuración de Passport para la autenticación
+// Carga la configuración de estrategias de autenticación
+require('./config/passport');
 
-// Settings
-app.set('port', process.env.PORT || 4000); // Si no se encuentra la variable de entorno `PORT`, la aplicación usará el puerto `4000` por defecto.
-app.set('views', path.join(__dirname, '/views')); // define la carpeta donde se encuentran las vistas
+/**
+ * Configuración de la aplicación Express
+ */
+// Configuración del puerto (usa variables de entorno o el puerto 4000 como fallback)
+app.set('port', process.env.PORT || 4000);
+// Define la ubicación de las vistas
+app.set('views', path.join(__dirname, '/views'));
 
-// Configura el motor de plantillas Handlebars con extensión .hbs
+/**
+ * Configuración del motor de plantillas Handlebars
+ * @see https://www.npmjs.com/package/express-handlebars
+ */
 app.engine('.hbs', exphbs.engine({
-    // Define el nombre del layout por defecto
-    defaultLayout: 'main', // 'main' es el layout que envolverá todas las vistas
-    // Especifica la carpeta donde se encuentran los layouts
+    defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
-    // Especifica la carpeta donde se encuentran los partials (vistas parciales)
     partialsDir: path.join(app.get('views'), 'partials'),
-    // Establece la extensión de los archivos de plantilla como .hbs
-    extname: '.hbs' // Todos los archivos de plantilla serán .hbs
+    extname: '.hbs',
+    // Configuración para evitar problemas de acceso a propiedades
+    // Resuelve advertencias de "Access has been denied to resolve property"
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    }
 }));
 app.set('view engine', '.hbs');
 
 // Configura express para servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middlewares
-app.use(methodOverride('_method')); // para usar métodos http como DELETE y PUT en formularios HTML
-app.use(morgan('dev'));
 /**
- * `express.urlencoded({ extended: false })` es un middleware que permite analizar los datos de formularios con el encoding `application/x-www-form-urlencoded`.
- * - `{ extended: false }` indica que no se permitirá el análisis de objetos anidados en los datos del formulario (usamos el parser de querystring de Node.js).
+ * Middlewares globales de la aplicación
  */
-app.use(express.urlencoded({extended: false}));
-app.use(session({
-    secret: 'mysecret', // Clave secreta para firmar la sesión
-    resave: true, // Fuerza a guardar la sesión en cada solicitud, incluso si no ha habido cambios
-    saveUninitialized: true // Guarda una sesión nueva incluso si no ha sido inicializada
-}));
-app.use(passport.initialize()); // Inicializa Passport para la autenticación
-app.use(passport.session()); // Middleware de Passport para manejar sesiones
-app.use(flash()); // Middleware para mostrar mensajes flash
+// Habilita métodos HTTP como DELETE y PUT en formularios
+app.use(methodOverride('_method'));
 
+// Logging de solicitudes HTTP (solo en desarrollo)
+if (process.env.NODE_ENV !== 'production') {
+    app.use(morgan('dev'));
+}
+
+// Parseo de datos de formularios
+app.use(express.urlencoded({ extended: false }));
+// Parseo de datos JSON
+app.use(express.json());
+/**
+ * Configuración de sesiones
+ * @see https://www.npmjs.com/package/express-session
+ */
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'mysecret', // Mejor usar variable de entorno
+    resave: false, // Optimizado: solo guarda la sesión si hay cambios
+    saveUninitialized: false, // Optimizado: cumple mejor con las leyes de privacidad
+    cookie: {
+        secure: process.env.NODE_ENV === 'production', // Cookies seguras en producción
+        httpOnly: true, // Previene ataques XSS
+        maxAge: 1000 * 60 * 60 * 24 // 24 horas
+    }
+}));
+
+// Inicialización de sistema de autenticación
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+/**
+ * Middleware para variables globales en vistas
+ * Hace accesibles los mensajes flash y datos de usuario en todas las vistas
+ */
 app.use((req, res, next) => {
-    // Middleware para pasar variables locales a todas las vistas
-    res.locals.success_msg = req.flash('success_msg'); // Mensajes de éxito
-    res.locals.error_msg = req.flash('error_msg'); // Mensajes de error
-    res.locals.error = req.flash('error'); // Mensajes de error de autenticación (passport)
-    res.locals.user = req.user || null; // Usuario autenticado (si existe)
-    next(); // Llama al siguiente middleware o ruta
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
+    
+    // Añade información de seguridad a los encabezados HTTP
+    res.header('X-XSS-Protection', '1; mode=block');
+    res.header('X-Frame-Options', 'DENY');
+    res.header('X-Content-Type-Options', 'nosniff');
+    
+    next();
 });
 
-// Routes
+/**
+ * Configuración de rutas de la aplicación
+ * Separa las rutas en módulos por funcionalidad
+ */
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/notes.routes'));
 app.use(require('./routes/users.routes'));
+
+/**
+ * Manejo de rutas no encontradas (404)
+ */
+app.use((req, res) => {
+    res.status(404).render('404', { 
+        title: 'Página no encontrada',
+        message: 'La página que buscas no existe' 
+    });
+});
 
 module.exports = app;
