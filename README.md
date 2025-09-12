@@ -1,6 +1,6 @@
 # Gestor de Productos para el Hogar
 
-![Logo del Proyecto](https://i.ibb.co/DHjkr6dv/Captura-de-pantalla-2025-02-19-024457.png)
+![Logo del Proyecto](https://i.ibb.co/Qv6FMhZ5/Captura-de-pantalla-2025-09-11-210320.png)
 
 Este proyecto es una aplicación web robusta y optimizada para gestionar y organizar productos necesarios para el hogar. Permite a los usuarios crear cuentas seguras, iniciar sesión con autenticación avanzada y administrar sus propias listas de compras. Cada usuario tiene acceso a sus propias "notas", donde puede seleccionar productos desde una lista predefinida y llevar un registro de los artículos que necesita comprar. La aplicación cuenta con un sistema completo de registro de actividades, validación avanzada y medidas de seguridad implementadas siguiendo las mejores prácticas del desarrollo web moderno.
 
@@ -263,8 +263,8 @@ Los administradores pueden utilizar esta información para implementar medidas a
 
 ---
 
-![Dashboard](https://i.ibb.co/wBf5stv/dashboard-preview.png)
+![Dashboard](https://i.ibb.co/PZKwLZK0/Captura-de-pantalla-2025-09-11-210412.png)
 *Vista de Dashboard con listado de notas y estadísticas de usuario*
 
-![Modo Móvil](https://i.ibb.co/T4wPvY5/mobile-view.png)
+![Modo Móvil](https://i.ibb.co/CsKH05Jc/Captura-de-pantalla-2025-09-11-210512.png)
 *Interfaz adaptativa para dispositivos móviles*
