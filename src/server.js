@@ -10,6 +10,7 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const passport = require('passport');
 
 // Inicialización de Express
@@ -69,6 +70,10 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'mysecret', // Mejor usar variable de entorno
     resave: false, // Optimizado: solo guarda la sesión si hay cambios
     saveUninitialized: false, // Optimizado: cumple mejor con las leyes de privacidad
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || `mongodb://${process.env.MULTIGESTOR_MONGODB_HOST}:${process.env.MULTIGESTOR_MONGODB_PORT}/${process.env.MULTIGESTOR_MONGODB_DATABASE}`,
+        touchAfter: 24 * 3600 // lazy session update (en segundos)
+    }),
     cookie: {
         secure: process.env.NODE_ENV === 'production', // Cookies seguras en producción
         httpOnly: true, // Previene ataques XSS
