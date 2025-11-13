@@ -1,2 +1,20 @@
+# Dependencias
 node_modules/
+
+# Base de datos local
 data/db
+
+# Variables de entorno (IMPORTANTE: nunca subir credenciales)
+.env
+
+# Logs
+*.log
+logs/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
