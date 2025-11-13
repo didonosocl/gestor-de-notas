@@ -9,6 +9,7 @@
     "axios": "^1.12.0",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.1",
@@ -24,7 +25,6 @@
     "port": "^0.8.1"
   },
   "devDependencies": {
-    "dotenv": "^16.4.7",
     "nodemon": "^3.1.10",
     "npm-check-updates": "^17.1.13"
   },
