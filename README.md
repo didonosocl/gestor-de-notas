@@ -208,16 +208,6 @@ service: 'yahoo'
 }
 ```
 
-### 🔍 Visualizar Mensajes de Contacto
-
-Para ver los mensajes guardados en la base de datos, ejecuta:
-
-```bash
-node view-contacts.js
-```
-
-Este script mostrará todos los mensajes de contacto con sus detalles completos.
-
 ### 🎨 Rutas del Sistema de Contacto
 
 - **GET** `/contacto` - Muestra el formulario (requiere autenticación)
