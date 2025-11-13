@@ -1,0 +1,111 @@
+{{!-- 
+  Vista de Error 404 - Página no encontrada
+  Diseño moderno y amigable
+--}}
+
+<div class="container-fluid py-5">
+  <div class="row min-vh-75 align-items-center">
+    <div class="col-lg-6 mx-auto text-center">
+      {{!-- Ilustración 404 --}}
+      <div class="mb-4">
+        <div class="position-relative d-inline-block">
+          <h1 class="display-1 fw-bold text-primary" style="font-size: 10rem; opacity: 0.1;">404</h1>
+          <div class="position-absolute top-50 start-50 translate-middle">
+            <i class="fas fa-search fa-5x text-primary mb-3"></i>
+          </div>
+        </div>
+      </div>
+
+      {{!-- Mensaje principal --}}
+      <h2 class="display-5 fw-bold text-dark mb-3">
+        ¡Ups! Página no encontrada
+      </h2>
+      <p class="lead text-muted mb-4 px-lg-5">
+        Lo sentimos, la página que estás buscando no existe o ha sido movida. 
+        Puede que la URL sea incorrecta o que el contenido ya no esté disponible.
+      </p>
+
+      {{!-- Botones de acción --}}
+      <div class="d-flex gap-3 justify-content-center flex-wrap mb-5">
+        <a href="/" class="btn btn-primary btn-lg px-4">
+          <i class="fas fa-home me-2"></i>Volver al Inicio
+        </a>
+        <button onclick="window.history.back()" class="btn btn-outline-secondary btn-lg px-4">
+          <i class="fas fa-arrow-left me-2"></i>Página Anterior
+        </button>
+      </div>
+
+      {{!-- Enlaces útiles --}}
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h5 class="card-title mb-4">
+            <i class="fas fa-compass me-2 text-primary"></i>
+            ¿Qué puedes hacer?
+          </h5>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <a href="/" class="text-decoration-none">
+                <div class="p-3 bg-light rounded hover-shadow">
+                  <i class="fas fa-home text-primary fa-2x mb-2"></i>
+                  <h6 class="mb-1">Ir al Inicio</h6>
+                  <small class="text-muted">Página principal</small>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="/notas" class="text-decoration-none">
+                <div class="p-3 bg-light rounded hover-shadow">
+                  <i class="fas fa-sticky-note text-success fa-2x mb-2"></i>
+                  <h6 class="mb-1">Mis Notas</h6>
+                  <small class="text-muted">Ver tus notas</small>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="/faq" class="text-decoration-none">
+                <div class="p-3 bg-light rounded hover-shadow">
+                  <i class="fas fa-question-circle text-warning fa-2x mb-2"></i>
+                  <h6 class="mb-1">FAQ</h6>
+                  <small class="text-muted">Preguntas frecuentes</small>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="/contacto" class="text-decoration-none">
+                <div class="p-3 bg-light rounded hover-shadow">
+                  <i class="fas fa-envelope text-info fa-2x mb-2"></i>
+                  <h6 class="mb-1">Contacto</h6>
+                  <small class="text-muted">Envíanos un mensaje</small>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{!-- Mensaje de ayuda --}}
+      <div class="mt-4">
+        <p class="text-muted">
+          <i class="fas fa-info-circle me-1"></i>
+          Si crees que esto es un error, por favor 
+          <a href="/contacto" class="text-primary">contáctanos</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .min-vh-75 {
+    min-height: 75vh;
+  }
+  
+  .hover-shadow {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+  }
+</style>
