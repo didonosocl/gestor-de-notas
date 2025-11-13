@@ -1,13 +1,16 @@
 /**
- * @fileoverview Controlador para las rutas principales de la aplicación (índice y FAQ).
- * Maneja la renderización de las páginas públicas principales.
+ * @fileoverview Controlador para las rutas principales de la aplicación (índice, FAQ y Contacto).
+ * Maneja la renderización de las páginas públicas principales y el sistema de contacto.
  * 
  * @module controllers/index
  * @author Diego Donoso
- * @version 1.2.0
+ * @version 1.3.0
  */
 
 'use strict';
+
+const nodemailer = require('nodemailer');
+const Contact = require('../models/Contact');
 
 // Objeto contenedor del controlador
 const indexController = {};
@@ -107,16 +110,143 @@ indexController.renderContact = (req, res, next) => {
         const viewData = {
             isAuthenticated: req.isAuthenticated(),
             user: req.user,
-            // Genera un token CSRF para el formulario
-            csrfToken: req.csrfToken ? req.csrfToken() : null,
-            // Añade timestamp para prevenir envíos duplicados
-            timestamp: Date.now()
+            currentYear: new Date().getFullYear()
         };
         
         res.render('contact', viewData);
     } catch (error) {
         console.error('Error al renderizar página de contacto:', error);
         next(error);
+    }
+};
+
+/**
+ * Procesa el formulario de contacto: guarda en BD y envía correo electrónico.
+ * 
+ * @function submitContact
+ * @param {Object} req - Objeto de solicitud Express con los datos del formulario.
+ * @param {Object} res - Objeto de respuesta Express.
+ * @returns {void} Redirige con mensaje de éxito o error.
+ */
+indexController.submitContact = async (req, res) => {
+    try {
+        const { name, email, subject, message } = req.body;
+        
+        // Validación básica
+        if (!name || !email || !subject || !message) {
+            req.flash('error_msg', 'Por favor completa todos los campos del formulario.');
+            return res.redirect('/contacto');
+        }
+        
+        // Obtener IP del cliente (para seguridad y prevención de spam)
+        const ipAddress = req.headers['x-forwarded-for'] || 
+                         req.connection.remoteAddress || 
+                         req.socket.remoteAddress || 
+                         null;
+        
+        // 1. Guardar en la base de datos
+        const contactData = {
+            name: name.trim(),
+            email: email.trim().toLowerCase(),
+            subject: subject.trim(),
+            message: message.trim(),
+            userId: req.user ? req.user.id : null,
+            ipAddress: ipAddress
+        };
+        
+        const newContact = new Contact(contactData);
+        await newContact.save();
+        
+        // 2. Configurar y enviar correo electrónico
+        try {
+            // Configurar el transportador de correo
+            // NOTA: Para producción, usa variables de entorno para las credenciales
+            const transporter = nodemailer.createTransport({
+                service: 'gmail', // Puedes usar otros servicios: outlook, yahoo, etc.
+                auth: {
+                    user: process.env.EMAIL_USER || 'tu-email@gmail.com', // Cambiar por tu email
+                    pass: process.env.EMAIL_PASS || 'tu-contraseña-de-aplicación' // Usar contraseña de aplicación
+                }
+            });
+            
+            // Contenido del correo
+            const mailOptions = {
+                from: `"Gestor de Notas - Contacto" <${process.env.EMAIL_USER || 'noreply@gestornotas.com'}>`,
+                to: 'diegoignaciodonosovera@gmail.com',
+                subject: `📧 Nuevo mensaje de contacto: ${subject}`,
+                html: `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+                        <div style="background-color: #4e73df; color: white; padding: 20px; border-radius: 10px 10px 0 0;">
+                            <h2 style="margin: 0;">📬 Nuevo Mensaje de Contacto</h2>
+                        </div>
+                        <div style="background-color: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <h3 style="color: #4e73df; border-bottom: 2px solid #4e73df; padding-bottom: 10px;">
+                                ${subject}
+                            </h3>
+                            
+                            <div style="margin: 20px 0;">
+                                <p style="margin: 10px 0;"><strong>👤 Nombre:</strong> ${name}</p>
+                                <p style="margin: 10px 0;"><strong>📧 Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                                <p style="margin: 10px 0;"><strong>📅 Fecha:</strong> ${new Date().toLocaleString('es-ES')}</p>
+                                ${req.user ? `<p style="margin: 10px 0;"><strong>👥 Usuario registrado:</strong> Sí</p>` : ''}
+                            </div>
+                            
+                            <div style="background-color: #f8f9fa; padding: 20px; border-left: 4px solid #4e73df; margin: 20px 0;">
+                                <h4 style="margin-top: 0; color: #5a5c69;">💬 Mensaje:</h4>
+                                <p style="white-space: pre-wrap; line-height: 1.6; color: #5a5c69;">${message}</p>
+                            </div>
+                            
+                            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e6f0; text-align: center; color: #858796; font-size: 12px;">
+                                <p>Este mensaje fue enviado desde el formulario de contacto de Gestor de Notas</p>
+                                <p>IP: ${ipAddress || 'No disponible'} | ID: ${newContact._id}</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                // Versión texto plano (fallback)
+                text: `
+Nuevo mensaje de contacto
+
+Asunto: ${subject}
+Nombre: ${name}
+Email: ${email}
+Fecha: ${new Date().toLocaleString('es-ES')}
+
+Mensaje:
+${message}
+
+---
+IP: ${ipAddress || 'No disponible'}
+ID: ${newContact._id}
+                `
+            };
+            
+            // Enviar el correo
+            await transporter.sendMail(mailOptions);
+            
+            // Éxito: guardado en BD y correo enviado
+            req.flash('success_msg', '¡Mensaje enviado con éxito! Te responderemos pronto a tu correo.');
+            
+        } catch (emailError) {
+            // Error al enviar correo, pero guardado en BD
+            console.error('Error al enviar correo:', emailError);
+            req.flash('success_msg', 'Tu mensaje ha sido guardado. Lamentablemente hubo un problema al enviar la notificación por correo, pero nos pondremos en contacto contigo pronto.');
+        }
+        
+        res.redirect('/contacto');
+        
+    } catch (error) {
+        console.error('Error al procesar formulario de contacto:', error);
+        
+        // Mensaje de error específico si es un error de validación de Mongoose
+        if (error.name === 'ValidationError') {
+            const errors = Object.values(error.errors).map(err => err.message);
+            req.flash('error_msg', `Error de validación: ${errors.join(', ')}`);
+        } else {
+            req.flash('error_msg', 'Hubo un error al enviar tu mensaje. Por favor intenta nuevamente.');
+        }
+        
+        res.redirect('/contacto');
     }
 };
 
