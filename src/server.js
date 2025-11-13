@@ -18,6 +18,11 @@ const app = express();
 // Carga la configuración de estrategias de autenticación
 require('./config/passport');
 
+// Confiar en el proxy de Render para cookies seguras
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
 /**
  * Configuración de la aplicación Express
  */
