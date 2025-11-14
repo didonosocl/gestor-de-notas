@@ -121,6 +121,36 @@ indexController.renderContact = (req, res, next) => {
 };
 
 /**
+ * Renderiza la página de política de privacidad.
+ * 
+ * @function renderPrivacy
+ * @param {Object} req - Objeto de solicitud Express.
+ * @param {Object} res - Objeto de respuesta Express.
+ * @returns {void} Renderiza la vista de privacidad.
+ */
+indexController.renderPrivacy = (req, res) => {
+    res.render('privacy', {
+        isAuthenticated: req.isAuthenticated(),
+        user: req.user
+    });
+};
+
+/**
+ * Renderiza la página de términos de servicio.
+ * 
+ * @function renderTerms
+ * @param {Object} req - Objeto de solicitud Express.
+ * @param {Object} res - Objeto de respuesta Express.
+ * @returns {void} Renderiza la vista de términos.
+ */
+indexController.renderTerms = (req, res) => {
+    res.render('terms', {
+        isAuthenticated: req.isAuthenticated(),
+        user: req.user
+    });
+};
+
+/**
  * Procesa el formulario de contacto: guarda en BD y envía correo electrónico.
  * 
  * @function submitContact

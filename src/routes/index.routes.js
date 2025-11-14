@@ -13,7 +13,9 @@ const {
     renderIndex, 
     renderFaq, 
     renderContact, 
-    submitContact 
+    submitContact,
+    renderPrivacy,
+    renderTerms
 } = require('../controllers/index.controller');
 const { isAuthenticated } = require('../helpers/auth');
 
@@ -51,6 +53,22 @@ router.get('/contacto', isAuthenticated, renderContact);
  * @middleware isAuthenticated - Verifica que el usuario haya iniciado sesión
  */
 router.post('/contacto', isAuthenticated, submitContact);
+
+/**
+ * Ruta de Política de Privacidad
+ * @route GET /privacidad
+ * @access Public - No requiere autenticación
+ * @description Renderiza la página de política de privacidad
+ */
+router.get('/privacidad', renderPrivacy);
+
+/**
+ * Ruta de Términos de Servicio
+ * @route GET /terminos
+ * @access Public - No requiere autenticación
+ * @description Renderiza la página de términos de servicio
+ */
+router.get('/terminos', renderTerms);
 
 // Exportamos el router para que pueda ser usado en otros archivos
 module.exports = router;
